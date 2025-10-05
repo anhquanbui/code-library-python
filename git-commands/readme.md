@@ -40,15 +40,6 @@ git commit -m "Initial commit"
 git push -u origin main
 ```
 
-Code block
-
-```
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git push -u origin main
-```
-
 ---
 
 ## 3) Typical errors I encountered (and fixes)
@@ -141,6 +132,38 @@ cd ..
 git add <folder>
 git commit -m "Convert submodule to regular folder"
 git push
+```
+
+### H) `.exercism` folder accidentally committed to GitHub
+**Cause:** Exercism CLI creates hidden metadata folders (`.exercism`) under each exercise, and they were committed before adding them to `.gitignore`.  
+
+**Fix (keep local data but remove from repo):**
+```powershell
+# 1. Make sure your .gitignore (at repo root) has this line
+**/.exercism/
+
+# 2. Remove the folder from Git tracking (without deleting locally)
+git rm -r --cached **/.exercism
+
+# 3. Commit & push the cleanup
+git commit -m "Remove .exercism metadata and ignore it"
+git push
+```
+
+**If the folder lives in subpaths** (like `python/hello-world/.exercism`),  
+the `**/.exercism/` pattern ensures all nested metadata folders are ignored globally.
+
+**Verify:**
+```powershell
+git ls-files | findstr .exercism   # nothing = clean
+```
+
+**If sensitive tokens were ever pushed:**  
+Use `git filter-repo` or BFG to wipe all `.exercism` traces from repo history,  
+then force-push to GitHub:
+```powershell
+git filter-repo --path .exercism --invert-paths
+git push --force --all
 ```
 
 ---
