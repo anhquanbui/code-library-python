@@ -23,6 +23,15 @@ git pull --rebase origin main
 git push
 ```
 
+Code block
+
+```
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git push -u origin main
+```
+
 ---
 
 ## 2) First-time setup (new repo or new machine)
