@@ -1,88 +1,137 @@
-# Python Code Tips of the Day
+# Code Library — Python
 
-A compact collection of practical Python snippets you can rehearse every morning.
-Each tip is short, memorable, and runnable in the companion notebook.
-
-_Last updated: 2025-10-05 17:45:41_
-
-------
-
-## Quick Start
-
-1. **Open the notebook** `python_tips.ipynb` and run cells from top to bottom.
-2. Optionally copy any snippet into your own project (they are dependency‑free).
-3. Come back tomorrow and re‑run a few different tips as a daily warm‑up.
+A bilingual README (English + Vietnamese) for my personal Python library.
 
 ---
 
-## Tips Overview
+## English
 
-### A. Core Language
-- **Swap two variables** with tuple unpacking: `a, b = b, a`
-- **Multiple assignment** in one line: `x, y, z = 1, 2, 3`
-- **Truthiness** for emptiness checks: `if not items:`
-- **Enumerate** with index and value: `for i, v in enumerate(seq): ...`
-- **Slicing** for reverse: `seq[::-1]`
+### What this is
+A personal repository where I learn Python by building **small apps**, collecting **useful code snippets**, and documenting ideas.  
+It’s my sandbox for experiments, daily warm-ups, and patterns I want to reuse later.
 
-### B. Lists & Iteration
-- **Comprehensions** for build + filter: `[x**2 for x in range(10) if x % 2 == 0]`
-- **Flatten** a nested list: `[x for sub in nested for x in sub]`
-- **Zip** to iterate in lockstep: `for a, b in zip(A, B): ...`
+### What’s inside
+- **Mini apps**: tiny command-line tools or prototypes (e.g., a simple to-do app).
+- **Snippets**: reusable functions/patterns I reach for often.
+- **Notebooks**: quick explorations and daily practice.
+- **Exercises**: small exercises (Ex1, Ex2, …) to reinforce concepts.
 
-### C. Dictionaries
-- **Safe lookup**: `d.get("key", default)`
-- **Iterate keys & values**: `for k, v in d.items(): ...`
-- **Invert dict** (if values are hashable & unique): `inv = {{v: k for k, v in d.items()}}`
+Example layout (will grow over time):
+```
+code-library-python/
+├─ simple-to-do-list/
+│  └─ todo.py
+├─ notebooks/
+│  └─ python_tips.ipynb
+├─ snippets/
+│  └─ helpers.py          # handy utilities (future)
+├─ exercises/
+│  ├─ Ex1/
+│  └─ Ex2/
+└─ README.md
+```
 
-### D. Strings
-- **f-strings**: `f"Hello, {{name}}!"`
-- **Join** pieces: `sep.join(parts)`
-- **Repeat** strings: `"ha" * 3  # 'hahaha'`
+### Quick Start
+```bash
+# Clone
+git clone https://github.com/<your-username>/code-library-python.git
+cd code-library-python
 
-### E. Numbers & Logic
-- **any / all**: `any(flags)`, `all(flags)`
-- **Defaulting with or**: `name = user_input or "Guest"`
+# (Optional) Create a virtual environment
+# python -m venv .venv && . .venv/Scripts/activate   # Windows (PowerShell)
+# source .venv/bin/activate                           # macOS/Linux
 
-### F. Functional-ish
-- **Lambda** for a tiny function: `lambda x: x + 1`
-- **map / sorted with key**: `sorted(items, key=lambda x: x.score, reverse=True)`
-- `*args / **kwargs` for flexible APIs
+# Run a mini app
+python simple-to-do-list/todo.py
 
-### G. Files
-- **Read file**: `with open("file.txt") as f: data = f.read()`
-- **Append file**: `with open("log.txt", "a") as f: f.write("line\n")`
+# Open the practice notebook (Jupyter or VS Code)
+# jupyter notebook notebooks/python_tips.ipynb
+```
+
+### Featured examples
+- **Simple To-Do (CLI)**: add/list/toggle tasks entirely in memory or with a tiny JSON file.
+- **Tips Notebook**: small cells you can run daily (enumerate, list/dict tricks, any/all, f-strings, etc.).
+
+### How I use this library
+- **Daily warm-ups** (2–5 minutes): rewrite a few snippets from memory.
+- **Prototype ideas** quickly before turning them into bigger projects.
+- **Collect patterns** I can reuse in future work.
+
+### Roadmap
+- Add `exercises/Ex1`, `Ex2`, … with problem statements + solutions.
+- Grow `snippets/` with small utilities (file ops, dict helpers, CLI helpers).
+- More notebooks for data wrangling, testing, and small algorithms.
+
+### Contributing / Notes to self
+This is primarily my personal learning repo, but suggestions are welcome.  
+If you see something to improve, feel free to open an issue or PR.
+
+### License
+Public domain / CC0-like intent. Reuse freely in your projects, classes, or internal docs.
 
 ---
 
-## How to Practice Daily (2–5 minutes)
+## Tiếng Việt
 
-- Pick 3 random tips and **rewrite them from memory**.
-- Add a very small twist (e.g., filter then map, or print formatted output).
-- Time-box to 5 minutes — momentum over perfection.
+### Thư viện này là gì?
+Đây là **thư viện Python cá nhân** nơi mình học hỏi bằng cách xây các **ứng dụng nhỏ**, thu thập **đoạn code hữu ích** và ghi chép ý tưởng.  
+Nó như một sân chơi để mình thử nghiệm, luyện tập mỗi ngày và lưu lại các mẫu (pattern) muốn tái sử dụng.
 
----
+### Bên trong gồm những gì
+- **Mini apps**: công cụ dòng lệnh nhỏ hoặc prototype (ví dụ: to-do đơn giản).
+- **Snippets**: các hàm/mẫu dùng lại thường xuyên.
+- **Notebooks**: thử nghiệm nhanh, luyện tập hằng ngày.
+- **Exercises**: bài tập nhỏ (Ex1, Ex2, …) để củng cố kiến thức.
 
-## Notebook Index
+Cấu trúc ví dụ (sẽ mở rộng dần):
+```
+code-library-python/
+├─ simple-to-do-list/
+│  └─ todo.py
+├─ notebooks/
+│  └─ python_tips.ipynb
+├─ snippets/
+│  └─ helpers.py          # tiện ích (kế hoạch thêm)
+├─ exercises/
+│  ├─ Ex1/
+│  └─ Ex2/
+└─ README.md
+```
 
-The notebook contains one cell (or more) per tip:
+### Bắt đầu nhanh
+```bash
+# Clone
+git clone https://github.com/<your-username>/code-library-python.git
+cd code-library-python
 
-1. Swap variables, multiple assignment, slicing
-2. Truthiness, emptiness checks, enumerate
-3. List comprehensions (build + filter)
-4. Flatten nested lists
-5. Zip iteration
-6. Dict get()/items(), invert dict
-7. f-strings, join, repeat
-8. any() / all(), defaulting with `or`
-9. lambda, map(), sorted(key=...)
-10. *args and **kwargs basics
-11. File read/write minimal patterns
+# (Tùy chọn) Tạo môi trường ảo
+# python -m venv .venv && . .venv/Scripts/activate   # Windows (PowerShell)
+# source .venv/bin/activate                           # macOS/Linux
 
-> Tip: Open the notebook and run the top cell to see the Python version and timestamp.
+# Chạy một app nhỏ
+python simple-to-do-list/todo.py
 
----
+# Mở notebook luyện tập (Jupyter hoặc VS Code)
+# jupyter notebook notebooks/python_tips.ipynb
+```
 
-## License
+### Ví dụ nổi bật
+- **To-Do đơn giản (CLI)**: thêm/liệt kê/đánh dấu nhiệm vụ — chạy hoàn toàn trong bộ nhớ hoặc ghi JSON nhỏ.
+- **Notebook mẹo nhanh**: các cell ngắn để chạy mỗi ngày (enumerate, thủ thuật list/dict, any/all, f-strings, …).
 
-Public domain / CC0-like intent. Use in projects, classes, or internal wikis.
-Contributions welcome: add your own favorite tip as a new cell.
+### Cách mình sử dụng
+- **Khởi động ngày mới** (2–5 phút): viết lại vài snippet từ trí nhớ.
+- **Prototype nhanh** trước khi phát triển thành dự án lớn.
+- **Gom các pattern** để tái sử dụng về sau.
+
+### Kế hoạch
+- Thêm `exercises/Ex1`, `Ex2`, … kèm đề và lời giải.
+- Mở rộng `snippets/` (xử lý file, dict helpers, CLI helpers).
+- Thêm notebook cho xử lý dữ liệu, testing và thuật toán nhỏ.
+
+### Góp ý / Ghi chú
+Repo phục vụ quá trình mình tự học, nhưng **rất hoan nghênh góp ý**.  
+Nếu thấy điểm nào cần cải thiện, cứ mở issue hoặc PR.
+
+### Giấy phép
+Ý định CC0 / Public domain. Cứ thoải mái dùng lại trong dự án, lớp học hoặc tài liệu nội bộ.
