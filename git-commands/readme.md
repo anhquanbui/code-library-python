@@ -181,3 +181,51 @@ git show <commit>                 # inspect a commit
 5. `git push`
 
 That’s it — copy/paste friendly and tailored to the issues I actually ran into.
+
+---
+
+## 2.5) What does `git push --set-upstream origin main` do?
+
+**Short answer:** it does two things at once.
+
+1) **Pushes** your current local branch to the remote `origin` as `main`.
+
+2) **Sets upstream tracking** so future `git push` / `git pull` work without specifying `origin main`.
+
+   - Shorthand: `git push -u origin main`
+
+### Why it matters
+- After the first time, you can simply run `git push` and `git pull` (no remote/branch needed).
+- `git branch -vv` will show your local branch tracking `origin/main`.
+
+### Common flows
+```powershell
+# First time on a new branch
+git checkout -b feature/x
+git push -u origin feature/x    # creates origin/feature/x and sets upstream
+
+# Check/modify upstream
+git branch -vv
+git branch --set-upstream-to=origin/main    # set explicitly
+git branch --unset-upstream                 # remove tracking
+```
+
+### Pitfalls & fixes
+- **non-fast-forward**: your branch is behind remote →
+  ```powershell
+  git pull --rebase origin main
+  # resolve conflicts -> git add <file> -> git rebase --continue
+  git push
+  ```
+- **Remote name mismatch** (not `origin`) → use your actual remote name:
+  ```powershell
+  git remote -v
+  git push -u <remote> main
+  ```
+- **No commits yet** → create an initial commit before pushing:
+  ```powershell
+  git add -A && git commit -m "Initial commit"
+  git push -u origin main
+  ```
+
+_Last appended: 2025-10-05 22:00:12_
