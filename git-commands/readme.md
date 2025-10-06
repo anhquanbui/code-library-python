@@ -261,3 +261,126 @@ git branch --unset-upstream                 # remove tracking
   ```
 
 _Last appended: 2025-10-05 22:00:12_
+
+---
+
+## 🔐 SSH key for GitHub (no browser OAuth needed)
+```bash
+# Create key (press Enter for defaults; passphrase optional)
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# Show public key to copy into GitHub → Settings → SSH and GPG keys
+cat ~/.ssh/id_ed25519.pub
+
+# Test SSH auth
+ssh -T git@github.com
+```
+
+## 🌏 Switch remote to SSH (from HTTPS)
+```bash
+git remote -v
+git remote set-url origin git@github.com:<username>/<repo>.git
+git remote -v   # verify
+```
+
+## 🌿 Create & push deploy branch
+```bash
+git checkout -b vps-deploy
+git add -A
+git commit -m "deploy branch init"
+git push -u origin vps-deploy
+```
+
+## 🔁 Keep `vps-deploy` updated from `main`
+```bash
+git checkout vps-deploy
+git pull origin main
+docker compose build
+docker compose up -d
+```
+
+## 🧹 Keep secrets out of Git
+```bash
+# 1) Ignore .env going forward
+echo ".env" >> .gitignore
+git add .gitignore
+git commit -m "ignore .env"
+git push
+
+# 2) Stop tracking .env if it was tracked locally
+git rm --cached .env
+git commit -m "remove .env from repo"
+git push
+```
+
+## 🧨 Remove `.env` from ALL history (if it was pushed)
+### Install `git-filter-repo` (choose ONE)
+```bash
+# A) apt (if available)
+sudo apt update && sudo apt install -y git-filter-repo
+
+# B) pipx (safe user env)
+sudo apt install -y pipx
+pipx ensurepath
+pipx install git-filter-repo
+
+# C) virtualenv (manual path)
+python3 -m venv ~/.venvs/gfr
+~/.venvs/gfr/bin/pip install git-filter-repo
+```
+### Rewrite history and force push
+```bash
+# If installed via apt or pipx (in PATH)
+git filter-repo --path .env --invert-paths
+
+# If using venv path
+~/.venvs/gfr/bin/git-filter-repo --path .env --invert-paths
+
+git push origin --force --all
+```
+
+## 🧯 Common errors & quick fixes
+```bash
+# Typed 'it' instead of 'git'
+git remote set-url origin git@github.com:<username>/<repo>.git
+
+# No upstream set (first push)
+git push -u origin vps-deploy
+
+# Push rejected (non-fast-forward): rebase then push
+git pull --rebase origin vps-deploy
+# resolve conflicts -> git add <file>
+git rebase --continue
+git push
+
+# Check where you are / what is tracked
+git status
+git branch -vv
+git remote -v
+```
+
+## 🐳 Docker quick ops (on VPS)
+```bash
+docker --version
+docker compose version
+
+docker compose build
+docker compose up -d
+docker compose logs -f api
+docker compose logs -f discover_loop
+docker compose logs -f tracker_loop
+docker compose down
+```
+
+## 🧭 Nice-to-have helpers
+```bash
+# Show graph of commits
+git log --oneline --graph --decorate --all
+
+# Undo last commit but keep changes staged
+git reset --soft HEAD~1
+
+# Reset local branch to remote (danger: discards local changes)
+git fetch origin
+git reset --hard origin/vps-deploy
+```
