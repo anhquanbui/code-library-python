@@ -1,7 +1,7 @@
 # Simple In-Memory To-Do (CLI)
 
 _A tiny command-line to-do list that keeps tasks **in memory** (no files, no menus).  
-Type tasks line by line; press **Enter on an empty line** to finish and print the list._
+Type tasks line by line; press **Enter on an empty line** to finish and print the list.
 
 ---
 
